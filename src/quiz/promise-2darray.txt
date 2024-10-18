@@ -1,1 +1,25 @@
 Explain the code execution based on the order of the messages logged in src/quiz/promise-2darray.txt.
+
+Below is the code that executed:
+➜  learn-async-ts git:(main) npx ts-node ./src/quiz/promise-2darray.ts
+Sum called ... 
+returning from sum
+Sum called ... 
+returning from sum
+Error: Cannot sum an empty array
+Adding 1 to sum
+Adding 2 to sum
+Adding 3 to sum
+Adding 4 to sum
+Adding 5 to sum
+Adding 6 to sum
+Adding 7 to sum
+Adding 8 to sum
+Adding 9 to sum
+sumPromise1: 45
+
+The reason why the outputs seem out of order is because the actual sum function is running asynchronously, so the program
+doesn't wait for the first call to finish. It immediately runs the next function, so that is why we see the first two lines
+"Sum is called ... returning from sum" twice back to back. Then we see the error because the second function call finishes 
+first before the first function as the function hits the error before the first function can add all the numbers. 
+We then see the print statements from the first function's promise and sumPromise1 is printed.
